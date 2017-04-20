@@ -12,13 +12,13 @@ export default class TodoList extends React.Component {
 
   render() {
     return (
-      <div className="todo-list">
+      <ul className="todo-list">
         {
           Object.keys(todos).map((key) => (
-            <div className="todo">{todos[key].todo}</div>
+            <li className="todo">{todos[key].todo}</li>
           ))
         }
-      </div>
+      </ul>
     )
   }
 }
