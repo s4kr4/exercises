@@ -1,16 +1,21 @@
-import { createAction, createReducer } from 'redux-act'
+import { createReducer } from 'redux-act'
+import { addTodo, deleteTodo, doneTodo } from '../actions'
 
 const initialState = {
-  todoList: [],
+  todos: [],
 }
 
-const addTodo = createAction('add todo')
-const deleteTodo = createAction('delete todo')
-
 export default createReducer({
-  [addTodo]: (state) => ({ todoList: state.todoList.push }),
-  [deleteTodo]: (state, key) => ({
-    todoList: state.todoList.splice(key)
+  [addTodo]: (state, text) => ({
+    todos: state.todos.concat({
+      todo: text,
+      done: false
+    })
+  }),
+  [deleteTodo]: (state) => ({
+    todos: state.todos.splice()
+  }),
+  [doneTodo]: (state) => ({
   }),
 }, initialState)
 

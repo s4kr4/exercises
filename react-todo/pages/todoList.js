@@ -1,26 +1,30 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { connect } from 'react-redux'
+import { addTodo, deleteTodo, doneTodo } from '../actions'
 
 import todos from '../assets/data/mock'
 
-export default class TodoList extends React.Component {
-
-  constructor(props) {
-    super(props)
-    this.state = {todos: todos}
-  }
-
+class TodoList extends React.Component {
   render() {
     return (
-      <ul className="todo-list">
-        {
-          Object.keys(todos).map((key) => (
-            <li className="todo">{todos[key].todo}</li>
-          ))
-        }
-      </ul>
+      <div>
+        <button onClick={() => this.props.dispatch(addTodo("test"))}>ADD</button>
+        <input type="text" placeholder="TODO" />
+        <ul className="todo-list">
+          {
+            this.props.todos.map((todo, i) => (
+              <li className="todo" key={i}>{ todo.todo }</li>
+            ))
+          }
+        </ul>
+      </div>
     )
   }
 }
 
+function mapStateToProps({ todos }) {
+  return { todos }
+}
+
+export default connect(mapStateToProps)(TodoList)
 
