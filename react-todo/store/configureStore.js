@@ -6,7 +6,9 @@ export default function configureStore(initialState, isServer) {
     return createStore(reducer, initialState)
   } else {
     if (!window.store) {
-      window.store = createStore(reducer, initialState)
+      window.store = createStore(reducer, initialState,
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() 
+      )
     }
     return window.store
   }
