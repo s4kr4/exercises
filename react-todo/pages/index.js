@@ -7,7 +7,7 @@ import TodoList from '../components/todoList'
 export default class extends React.Component {
   static getInitialProps({ req }) {
     const isServer = !!req
-    const store = configureStore({ count: 0, todos: [] }, isServer)
+    const store = configureStore({ todos: [] }, isServer)
     return { initialState: store.getState(), isServer }
   }
 
