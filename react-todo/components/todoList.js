@@ -14,10 +14,12 @@ class TodoList extends React.Component {
   }
 
   addTodo() {
-    this.props.dispatch(addTodo(this.state.text))
-    this.setState({
-      text: ""
-    })
+    if (this.state.text !== "") {
+      this.props.dispatch(addTodo(this.state.text))
+      this.setState({
+        text: ""
+      })
+    }
   }
 
   render() {
