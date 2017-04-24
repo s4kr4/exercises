@@ -13,15 +13,17 @@ class TodoList extends React.Component {
     }
   }
 
+  addTodo() {
+    this.props.dispatch(addTodo(this.state.text))
+    this.setState({
+      text: ""
+    })
+  }
+
   render() {
     return (
       <div>
-        <button onClick={ () => {
-          this.props.dispatch(addTodo(this.state.text))
-          this.setState({
-            text: ""
-          })
-        }}>ADD</button>
+        <button onClick={ this.addTodo.bind(this) }>ADD</button>
         <input id="add" type="text" placeholder="TODO" value={this.state.text}
           onChange={(e) => this.setState({ text: e.target.value })} />
         <ul className="todo-list">
