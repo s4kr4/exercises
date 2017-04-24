@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import RaisedButton from 'material-ui/RaisedButton'
+import TextField from 'material-ui/TextField'
 
 import { addTodo, deleteTodo, toggleTodo } from '../actions'
 import Todo from './todo.js'
@@ -11,6 +13,12 @@ class TodoList extends React.Component {
     this.state = {
       text: ""
     }
+  }
+
+  handleChange(e) {
+    this.setState({
+      text: e.target.value
+    })
   }
 
   addTodo() {
@@ -25,9 +33,16 @@ class TodoList extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={ this.addTodo.bind(this) }>ADD</button>
-        <input id="add" type="text" placeholder="TODO" value={this.state.text}
-          onChange={(e) => this.setState({ text: e.target.value })} />
+        <RaisedButton
+          label="ADD"
+          primary={ true }
+          style={{ margin:10 }}
+          onClick={ this.addTodo.bind(this) } />
+        <TextField
+          hintText="TODO"
+          value={ this.state.text }
+          onChange={ this.handleChange.bind(this) }
+          />
         <ul className="todo-list">
           {
             this.props.todos.map((todo) => (
