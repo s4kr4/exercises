@@ -21,6 +21,12 @@ class TodoList extends React.Component {
     })
   }
 
+  keyDown(e) {
+    if (e.key === 'Enter') {
+      this.addTodo()
+    }
+  }
+
   addTodo() {
     if (this.state.text !== "") {
       this.props.dispatch(addTodo(this.state.text))
@@ -41,6 +47,7 @@ class TodoList extends React.Component {
         <TextField
           hintText="TODO"
           value={ this.state.text }
+          onKeyDown= { this.keyDown.bind(this) }
           onChange={ this.handleChange.bind(this) }
           />
         <ul className="todo-list">
